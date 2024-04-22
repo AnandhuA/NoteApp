@@ -1,0 +1,47 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+const baseUrl = "http://192.168.44.210:3000/";
+ValueNotifier notes = ValueNotifier([]);
+
+addNote(Map<String, dynamic> data) async {
+  try {
+    await http.post(
+      Uri.parse("${baseUrl}addNode"),
+      body: jsonEncode(data),
+      headers: {"Content-Type": "application/json"},
+    );
+    await getAllNotes();
+    notes.notifyListeners();
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+}
+
+getAllNotes() async {
+  try {
+    final req = await http.get(
+      Uri.parse("${baseUrl}getAllNotes"),
+    );
+    notes.value = await jsonDecode(req.body);
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+}
+
+updateNote(Map<String, dynamic> data) {
+  try {
+    http.put(
+      Uri.parse("${baseUrl}updateNote/${data["id"]}"),
+      headers: {"Content-Type": "application/json"},
+    );
+    getAllNotes();
+    notes.notifyListeners();
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+}
