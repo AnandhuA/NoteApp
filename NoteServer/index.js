@@ -18,13 +18,14 @@ app.get("/", (req, res) => {
 
 app.post("/addNode", (req, res) => {
     try {
+        // console.log(req.body);
         const data = {
             "id": req.body.id,
             "title": req.body.title,
             "content": req.body.content
         }
         notes.push(data);
-        console.log(data);
+        // console.log(data);
         res.status(200).send("Note added successfully");
     } catch (error) {
         console.log(error.message);
@@ -45,8 +46,8 @@ app.get("/getAllNotes", (req, res) => {
 app.post("/updateNote/:id", (req, res) => {
     try {
         const id = parseInt(req.params.id);
-        // console.log(id);
-        // console.log(req.body);
+        console.log(id);
+        console.log(req.body);
         const title = req.body.title
         const content = req.body.content
 
@@ -55,10 +56,12 @@ app.post("/updateNote/:id", (req, res) => {
                 notes[i].title = title
                 notes[i].content = content
                 console.log("Note updated successfully");
+                console.log(notes);
             } else {
                 console.log("Note not found");
             }
         }
+        res.status(200).send("Note update successfully");
     } catch (error) {
         console.log(error.message);
     }
@@ -80,12 +83,13 @@ app.post("/deleteNote/:id", (req, res) => {
                 console.log("Note not found");
             }
         }
+        res.status(200).send("Note delete successfully");
     } catch (error) {
         console.log(error.message);
     }
 })
 
 
-app.listen(3000, "192.168.44.65", () => {
+app.listen(3000, "192.168.191.242", () => {
     console.log('Server is running on port 3000');
 });
