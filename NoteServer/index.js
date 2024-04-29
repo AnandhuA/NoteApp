@@ -1,8 +1,19 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+const uri = 'mongodb+srv://abhirajtr:abhirajtr@cluster0.wagtvjr.mongodb.net/NoteApp?retryWrites=true&w=majority&appName=Cluster0'
+mongoose.connect(uri, (err) => {
+    if (!err) {
+        console.log('Database Connected');
+    } else {
+        console.log('Database Connection error!');
+    }
+})
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
 const notes = [];
 
 
@@ -22,7 +33,8 @@ app.post("/addNode", (req, res) => {
         const data = {
             "id": req.body.id,
             "title": req.body.title,
-            "content": req.body.content
+            "content": req.body.content,
+            "date": req.body.date
         }
         notes.push(data);
         // console.log(data);
@@ -90,6 +102,6 @@ app.post("/deleteNote/:id", (req, res) => {
 })
 
 
-app.listen(3000, "192.168.191.242", () => {
+app.listen(3000, "192.168.217.242", () => {
     console.log('Server is running on port 3000');
 });
