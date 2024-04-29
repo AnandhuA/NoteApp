@@ -48,15 +48,33 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                       ? DateTime.now().microsecondsSinceEpoch
                       : widget.id,
                   "title": titleController.text,
-                  "content": contentController.text
+                  "content": contentController.text,
+                  "date": DateTime.now().toString()
                 };
                 widget.add ? await addNote(data) : await updateNote(data);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  duration: const Duration(seconds: 2),
+                  content: widget.add
+                      ? const Text(
+                          "Note Added ",
+                          style: TextStyle(color: Colors.black),
+                        )
+                      : const Text(
+                          "Note Edited ",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                  backgroundColor: Colors.green[200],
+                ));
 
                 Navigator.of(context).pop();
               } else {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  duration: Duration(seconds: 1),
-                  content: Text("Please fill all the fields"),
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  duration: const Duration(seconds: 1),
+                  content: const Text(
+                    "Please fill all the fields",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  backgroundColor: Colors.red[200],
                 ));
               }
             },

@@ -22,7 +22,8 @@ app.post("/addNode", (req, res) => {
         const data = {
             "id": req.body.id,
             "title": req.body.title,
-            "content": req.body.content
+            "content": req.body.content,
+            "date": req.body.date
         }
         notes.push(data);
         // console.log(data);
@@ -90,6 +91,6 @@ app.post("/deleteNote/:id", (req, res) => {
 })
 
 
-app.listen(3000, "192.168.191.242", () => {
+app.listen(3000, "192.168.217.242", () => {
     console.log('Server is running on port 3000');
 });

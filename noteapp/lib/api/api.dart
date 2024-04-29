@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-const baseUrl = "http://192.168.44.210:3000/";
+const baseUrl = "http://192.168.217.242:3000/";
 ValueNotifier notes = ValueNotifier([]);
 
 addNote(Map<String, dynamic> data) async {
@@ -33,13 +33,27 @@ getAllNotes() async {
   }
 }
 
-updateNote(Map<String, dynamic> data) {
+updateNote(Map<String, dynamic> data) async {
   try {
-    http.put(
+    await http.post(
       Uri.parse("${baseUrl}updateNote/${data["id"]}"),
+      body: jsonEncode(data),
       headers: {"Content-Type": "application/json"},
     );
-    getAllNotes();
+    await getAllNotes();
+    notes.notifyListeners();
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+}
+
+deleteNote(Map<String, dynamic> data) async {
+  try {
+    await http.post(
+      Uri.parse("${baseUrl}deleteNote/${data["id"]}"),
+      headers: {"Content-Type": "application/json"},
+    );
+    await getAllNotes();
     notes.notifyListeners();
   } catch (e) {
     debugPrint(e.toString());

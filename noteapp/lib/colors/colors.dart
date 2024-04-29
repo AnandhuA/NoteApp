@@ -12,4 +12,6 @@ List<Color> colors = [
   Colors.indigo.shade100,
   Colors.deepPurple.shade100,
   Colors.cyan.shade100,
+  Colors.amber.shade100,
+  Colors.lime.shade100,
 ];
