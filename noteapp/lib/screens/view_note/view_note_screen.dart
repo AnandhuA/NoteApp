@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:noteapp/api/api.dart';
-import 'package:noteapp/screens/add_note_screen.dart';
+import 'package:noteapp/screens/add_note/add_note_screen.dart';
 
 class ViewNoteScreen extends StatelessWidget {
   final int index;
