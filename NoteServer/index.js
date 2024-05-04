@@ -91,6 +91,6 @@ app.post("/deleteNote/:id", (req, res) => {
 })
 
 
-app.listen(3000, "192.168.255.242", () => {
+app.listen(3000, "192.168.44.211", () => {
     console.log('Server is running on port 3000');
 });

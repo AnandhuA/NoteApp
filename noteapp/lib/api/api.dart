@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-const baseUrl = "http://192.168.255.242:3000/";
+const baseUrl = "http://192.168.44.211:3000/";
 ValueNotifier notes = ValueNotifier([]);
 
 addNote(Map<String, dynamic> data) async {
