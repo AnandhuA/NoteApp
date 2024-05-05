@@ -26,7 +26,7 @@ app.post("/addNode", (req, res) => {
             "date": req.body.date
         }
         notes.push(data);
-        // console.log(data);
+        console.log(data);
         res.status(200).send("Note added successfully");
     } catch (error) {
         console.log(error.message);
@@ -91,6 +91,6 @@ app.post("/deleteNote/:id", (req, res) => {
 })
 
 
-app.listen(3000, "192.168.44.211", () => {
+app.listen(3000, "192.168.237.242", () => {
     console.log('Server is running on port 3000');
 });

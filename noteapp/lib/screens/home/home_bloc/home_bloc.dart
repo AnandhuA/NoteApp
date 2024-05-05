@@ -11,18 +11,27 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
     on<HomeInitialEvent>(homeInitialEvent);
     on<AddButtonNavigate>(addButtonNavigate);
+    on<ViewNoteNavigate>(viewNoteNavigate);
   }
 
   FutureOr<void> homeInitialEvent(
       HomeInitialEvent event, Emitter<HomeState> emit) async {
     emit(HomeLoadingState());
-    // final List list = await getAllNotes();
-    emit(HomeSuccessState(noteList: []));
-    // print(list);
+    final List? list = await getAllNotes();
+    if (list != null) {
+      emit(HomeSuccessState(noteList: list));
+    } else {
+      emit(HomeErrorState());
+    }
   }
 
   FutureOr<void> addButtonNavigate(
       AddButtonNavigate event, Emitter<HomeState> emit) {
     emit(NavegateToAddNotePage());
+  }
+
+  FutureOr<void> viewNoteNavigate(
+      ViewNoteNavigate event, Emitter<HomeState> emit) {
+    emit(NavegateToNotePage());
   }
 }

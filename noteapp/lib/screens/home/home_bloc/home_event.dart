@@ -3,11 +3,14 @@ part of 'home_bloc.dart';
 @immutable
 sealed class HomeEvent {}
 
-class HomeInitialEvent extends HomeEvent{}
+class HomeInitialEvent extends HomeEvent {}
 
-class AddButtonNavigate extends HomeEvent{} 
+class AddButtonNavigate extends HomeEvent {}
 
-class ViewNoteNavigate extends HomeEvent{}
+class ViewNoteNavigate extends HomeEvent {
+  final note;
 
-class NoteLongpress extends HomeEvent{}
+  ViewNoteNavigate({this.note});
+}
 
+class NoteLongpress extends HomeEvent {}

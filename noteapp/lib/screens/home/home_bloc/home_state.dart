@@ -18,3 +18,5 @@ class HomeSuccessState extends HomeState {
 class HomeErrorState extends HomeState {}
 
 class NavegateToAddNotePage extends HomeActionState {}
+class NavegateToNotePage extends HomeActionState {}
+ 
