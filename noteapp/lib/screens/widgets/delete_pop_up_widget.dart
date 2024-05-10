@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:noteapp/api/api.dart';
 
 class DeletePopUpWidget extends StatelessWidget {
   final int index;
@@ -11,7 +10,8 @@ class DeletePopUpWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        "Delete ${notes.value[index]["title"]}",
+        // "Delete ${notes[index]["title"]}",
+        "",
         style: const TextStyle(overflow: TextOverflow.ellipsis),
       ),
       actions: [
@@ -32,7 +32,7 @@ class DeletePopUpWidget extends StatelessWidget {
               ),
               backgroundColor: Colors.green[200],
             ));
-            await deleteNote(notes.value[index]);
+            // await deleteNote(notes[index]);
           },
           child: const Text("Yes"),
         )

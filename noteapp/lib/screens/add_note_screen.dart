@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:noteapp/api/api.dart';
+import 'package:noteapp/screens/home_screen.dart';
 
 class AddNoteScreen extends StatefulWidget {
   const AddNoteScreen({
@@ -24,6 +24,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
   final TextEditingController titleController = TextEditingController();
 
   final TextEditingController contentController = TextEditingController();
+ 
   @override
   void initState() {
     if (widget.title != null && widget.description != null) {
@@ -51,7 +52,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                   "content": contentController.text,
                   "date": DateTime.now().toString()
                 };
-                widget.add ? await addNote(data) : await updateNote(data);
+                // widget.add ? await addNote(data) : await updateNote(data);
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   duration: const Duration(seconds: 2),
                   content: widget.add
@@ -66,7 +67,12 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                   backgroundColor: Colors.green[200],
                 ));
 
-                Navigator.of(context).pop();
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
+                    (route) => false);
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   duration: const Duration(seconds: 1),
