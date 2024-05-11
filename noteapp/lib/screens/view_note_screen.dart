@@ -2,17 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:noteapp/api/api.dart';
+
 import 'package:noteapp/screens/add_note_screen.dart';
 
 class ViewNoteScreen extends StatelessWidget {
-  final int index;
-  const ViewNoteScreen({super.key, required this.index});
+  final Map note;
+  const ViewNoteScreen({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
     final DateTime dateTime =
-        DateFormat('yyyy-MM-dd HH:mm:ss').parse(notes[index]["date"]);
+        DateFormat('yyyy-MM-dd HH:mm:ss').parse(note["date"]);
     final date = DateFormat('dd MMM yyyy').format(dateTime);
     return Scaffold(
       appBar: AppBar(
@@ -24,9 +24,9 @@ class ViewNoteScreen extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => AddNoteScreen(
                     add: false,
-                    title: notes[index]["title"],
-                    description: notes[index]["content"],
-                    id: notes[index]["id"],
+                    title: note["title"],
+                    description: note["content"],
+                    id: note["id"],
                   ),
                 ),
               );
@@ -46,7 +46,7 @@ class ViewNoteScreen extends StatelessWidget {
                 children: [const Spacer(), Text(date)],
               ),
               Text(
-                notes[index]["title"] ?? "null",
+               note["title"] ?? "null",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
@@ -54,7 +54,7 @@ class ViewNoteScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Text(
-                notes[index]["content"] ?? "null",
+               note["content"] ?? "null",
                 style: const TextStyle(
                   fontSize: 20,
                 ),

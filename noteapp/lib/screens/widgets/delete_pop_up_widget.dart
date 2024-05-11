@@ -1,17 +1,18 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noteapp/bloc/note_bloc.dart';
 
 class DeletePopUpWidget extends StatelessWidget {
-  final int index;
-  const DeletePopUpWidget({super.key, required this.index});
+  final Map note;
+  const DeletePopUpWidget({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        // "Delete ${notes[index]["title"]}",
-        "",
+        "Delete ${note["title"]}",
         style: const TextStyle(overflow: TextOverflow.ellipsis),
       ),
       actions: [
@@ -32,7 +33,7 @@ class DeletePopUpWidget extends StatelessWidget {
               ),
               backgroundColor: Colors.green[200],
             ));
-            // await deleteNote(notes[index]);
+            context.read<NoteBloc>().add(NoteDeleteEvent(note: note));
           },
           child: const Text("Yes"),
         )

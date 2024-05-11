@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/api/api.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:noteapp/bloc/note_bloc.dart';
 import 'package:noteapp/screens/add_note_screen.dart';
 
 import 'package:noteapp/screens/widgets/note_widegt.dart';
@@ -9,20 +11,37 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<NoteBloc>().add(ApiCallingEvent());
     return Scaffold(
       appBar: AppBar(
         title: const Text("Notes"),
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.grid_3x3)),
-          const SizedBox(width: 10),
-        ],
+      
       ),
-      body: NoteWidget(notesList: notes),
+      body: BlocConsumer<NoteBloc, NoteState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          if (state is LoadingState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is ScuccessState) {
+             return NoteWidget(notesList: state.notes);
+             
+        
+          }
+          if (state is ErrorState) {
+            return const Center(
+              child: Text("Error"),
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue.shade400,
         onPressed: () {
-          print("object");
-          
           Navigator.push(
               context,
               MaterialPageRoute(

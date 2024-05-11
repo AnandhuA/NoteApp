@@ -27,7 +27,7 @@ app.post("/addNode", (req, res) => {
         }
         notes.push(data);
         console.log(data);
-        res.status(200).send("Note added successfully");
+        res.status(200).send(notes);
     } catch (error) {
         console.log(error.message);
     }
@@ -57,12 +57,12 @@ app.post("/updateNote/:id", (req, res) => {
                 notes[i].title = title
                 notes[i].content = content
                 console.log("Note updated successfully");
-                console.log(notes);
+                // console.log(notes);
             } else {
                 console.log("Note not found");
             }
         }
-        res.status(200).send("Note update successfully");
+        res.status(200).send(notes);
     } catch (error) {
         console.log(error.message);
     }
@@ -84,13 +84,13 @@ app.post("/deleteNote/:id", (req, res) => {
                 console.log("Note not found");
             }
         }
-        res.status(200).send("Note delete successfully");
+        res.status(200).send(notes);
     } catch (error) {
         console.log(error.message);
     }
 })
 
 
-app.listen(3000, "192.168.66.242", () => {
+app.listen(3000, "192.168.44.235", () => {
     console.log('Server is running on port 3000');
 });
