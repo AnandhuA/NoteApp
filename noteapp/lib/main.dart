@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/bloc/note_bloc.dart';
 
 import 'package:noteapp/screens/home_screen.dart';
+import 'package:noteapp/theme/theme_bloc/theme_bloc.dart';
 
+bool isdarkMode = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await getAllNotes();
+ 
   runApp(const MyApp());
 }
 
@@ -15,12 +17,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NoteBloc(),
-      child: const MaterialApp(
-        
-        debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => NoteBloc()),
+        BlocProvider(create: (context) => ThemeBloc())
+      ],
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          if (state is ThemeInitial) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              home: const HomeScreen(),
+              theme: state.themeData,
+            
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
       ),
     );
   }

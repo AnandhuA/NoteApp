@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 part 'note_event.dart';
 part 'note_state.dart';
 
-const baseUrl = "http://192.168.44.235:3000/";
+const baseUrl = "http://192.168.66.242:3000/";
 
 class NoteBloc extends Bloc<NoteEvent, NoteState> {
   NoteBloc() : super(NoteInitial()) {
@@ -24,11 +24,12 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
   ) async {
     emit(LoadingState());
     try {
+ 
       final req = await http.get(
         Uri.parse("${baseUrl}getAllNotes"),
       );
       List noteList = await jsonDecode(req.body);
-
+  
       emit(ScuccessState(notes: noteList));
     } catch (e) {
       debugPrint(e.toString());
@@ -57,6 +58,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
         body: jsonEncode(jsonData),
         headers: {"Content-Type": "application/json"},
       );
+
       if (res.statusCode == 200) {
         List noteList = await jsonDecode(res.body);
         emit(ScuccessState(notes: noteList));

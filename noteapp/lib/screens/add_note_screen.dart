@@ -57,7 +57,9 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 : const Text("Note Edited"),
           ),
         );
-        Navigator.pop(context);
+        state.add
+            ? Navigator.pop(context)
+            : Navigator.of(context).popUntil((route) => route.isFirst);
       }
     }, builder: (context, state) {
       if (state is LoadingState) {

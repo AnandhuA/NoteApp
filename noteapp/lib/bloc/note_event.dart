@@ -34,4 +34,3 @@ class NoteDeleteEvent extends NoteEvent {
     required this.note,
   });
 }
-

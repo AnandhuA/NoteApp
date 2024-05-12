@@ -1,11 +1,13 @@
 const express = require('express');
+const cors = require('cors'); 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors())
+
 const notes = [];
-
-
 
 app.get("/", (req, res) => {
     try {
@@ -91,6 +93,6 @@ app.post("/deleteNote/:id", (req, res) => {
 })
 
 
-app.listen(3000, "192.168.44.235", () => {
+app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
