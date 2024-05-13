@@ -4,11 +4,12 @@ import 'package:noteapp/bloc/note_bloc.dart';
 
 import 'package:noteapp/screens/home_screen.dart';
 import 'package:noteapp/theme/theme_bloc/theme_bloc.dart';
+import 'package:noteapp/ui_change_bloc/ui_change_bloc.dart';
 
 bool isdarkMode = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- 
+
   runApp(const MyApp());
 }
 
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => NoteBloc()),
-        BlocProvider(create: (context) => ThemeBloc())
+        BlocProvider(create: (context) => ThemeBloc()),
+        BlocProvider(create: (context) => UiChangeBloc())
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
@@ -29,7 +31,6 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               home: const HomeScreen(),
               theme: state.themeData,
-            
             );
           } else {
             return const SizedBox();

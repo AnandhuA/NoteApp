@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 part 'note_event.dart';
 part 'note_state.dart';
 
-const baseUrl = "http://192.168.66.242:3000/";
+const baseUrl = "http://192.168.66.246:3000/";
 
 class NoteBloc extends Bloc<NoteEvent, NoteState> {
   NoteBloc() : super(NoteInitial()) {

@@ -6,9 +6,12 @@ part 'ui_change_event.dart';
 part 'ui_change_state.dart';
 
 class UiChangeBloc extends Bloc<UiChangeEvent, UiChangeState> {
-  UiChangeBloc() : super(UiChangeInitial(uiState: true)) {
+  UiChangeBloc() : super(UiChangeInitial(uiState: false)) {
     on<UiChangeButtonEvent>((event, emit) {
-      
+      if (state is UiChangeInitial) {
+        final newUiState = !(state as UiChangeInitial).uiState;
+        emit(UiChangeInitial(uiState: newUiState));
+      }
     });
   }
 }

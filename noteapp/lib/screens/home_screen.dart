@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:noteapp/screens/widgets/note_widegt.dart';
 import 'package:noteapp/theme/colors.dart';
 import 'package:noteapp/theme/theme_bloc/theme_bloc.dart';
+import 'package:noteapp/ui_change_bloc/ui_change_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -19,6 +20,17 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Notes"),
         actions: [
+          BlocBuilder<UiChangeBloc, UiChangeState>(
+            builder: (context, state) {
+              final uiState = state is UiChangeInitial ? state.uiState : false;
+              return IconButton(
+                onPressed: () {
+                  context.read<UiChangeBloc>().add(UiChangeButtonEvent());
+                },
+                icon: Icon(uiState ? Icons.grid_4x4 : Icons.grid_3x3),
+              );
+            },
+          ),
           IconButton(
             onPressed: () {
               if (isdarkMode) {
