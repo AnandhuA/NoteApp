@@ -1,3 +1,26 @@
+# Flutter Note App with Node.js Backend
+
+This Flutter-based note-taking app is powered by a Node.js backend. It allows users to create, update, and delete notes. The app is built with the Flutter BLoC state management pattern and supports both dark mode and light mode.
+
+## Features
+
+- Create new notes.
+- Update existing notes.
+- Delete notes.
+- Dark mode and light mode support.
+
+## Technologies Used
+
+### Frontend (Flutter)
+- Flutter: Cross-platform framework for building mobile apps.
+- Flutter BLoC: State management library for Flutter applications.
+
+### Backend (Node.js)
+- Node.js: JavaScript runtime for building server-side applications.
+- Express.js: Web application framework for Node.js.
+- CORS: Cross-Origin Resource Sharing middleware for enabling CORS requests.
+
+
 # Screenshots
 
 ## Light Mode
