@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:noteapp/bloc/note_bloc.dart';
-import 'package:noteapp/main.dart';
 import 'package:noteapp/screens/add_note_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:noteapp/screens/widgets/note_widegt.dart';
@@ -15,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<NoteBloc>().add(ApiCallingEvent());
+    context.read<NoteBloc>().add(GetallNotesEvent());
     return Scaffold(
       appBar: AppBar(
         title: const Text("Notes"),
@@ -33,17 +32,7 @@ class HomeScreen extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              if (isdarkMode) {
-                context
-                    .read<ThemeBloc>()
-                    .add(ThemeChangeEvent(themeData: darkMode));
-                isdarkMode = false;
-              } else {
-                context
-                    .read<ThemeBloc>()
-                    .add(ThemeChangeEvent(themeData: lightMode));
-                isdarkMode = true;
-              }
+              context.read<ThemeBloc>().add(ThemeChangeEvent());
             },
             icon: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (context, state) {

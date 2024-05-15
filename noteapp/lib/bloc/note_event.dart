@@ -3,7 +3,7 @@ part of 'note_bloc.dart';
 @immutable
 sealed class NoteEvent {}
 
-class ApiCallingEvent extends NoteEvent {}
+class GetallNotesEvent extends NoteEvent {}
 
 class NoteAddEvent extends NoteEvent {
   final String title;

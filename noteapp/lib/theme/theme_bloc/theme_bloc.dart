@@ -8,10 +8,13 @@ part 'theme_state.dart';
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(ThemeInitial(themeData: lightMode)) {
     on<ThemeChangeEvent>((event, emit) {
-      if (event.themeData == darkMode) {
-        emit(ThemeInitial(themeData: lightMode));
-      } else if (event.themeData == lightMode) {
-        emit(ThemeInitial(themeData: darkMode));
+
+   
+        if ((state as ThemeInitial).themeData == darkMode) {
+          emit(ThemeInitial(themeData: lightMode));
+        
+      }else if((state as ThemeInitial).themeData == lightMode){
+         emit(ThemeInitial(themeData: darkMode));
       }
     });
   }
