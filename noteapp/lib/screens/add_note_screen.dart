@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:noteapp/bloc/note_bloc.dart';
 
 class AddNoteScreen extends StatefulWidget {
@@ -37,37 +38,33 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NoteBloc, NoteState>(listener: (context, state) {
-      if (state is ErrorState) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.red.shade300,
-            duration: const Duration(seconds: 1),
-            content: Text(state.errorMessage),
-          ),
-        );
-      }
-      if (state is ScuccessState) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.green.shade300,
-            duration: const Duration(seconds: 1),
-            content: state.add
-                ? const Text("Note Added")
-                : const Text("Note Edited"),
-          ),
-        );
-        state.add
-            ? Navigator.pop(context)
-            : Navigator.of(context).popUntil((route) => route.isFirst);
-      }
-    }, builder: (context, state) {
-      if (state is LoadingState) {
-        return const Scaffold(
-            body: Center(
-          child: CircularProgressIndicator(),
-        ));
-      } else {
+    return BlocConsumer<NoteBloc, NoteState>(
+      listener: (context, state) {
+        if (state is ErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Colors.red.shade300,
+              duration: const Duration(seconds: 1),
+              content: Text(state.errorMessage),
+            ),
+          );
+        }
+        if (state is ScuccessState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Colors.green.shade300,
+              duration: const Duration(seconds: 1),
+              content: state.add
+                  ? const Text("Note Added")
+                  : const Text("Note Edited"),
+            ),
+          );
+          state.add
+              ? Navigator.pop(context)
+              : Navigator.of(context).popUntil((route) => route.isFirst);
+        }
+      },
+      builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
             title: Text(widget.add ? "Add Note" : "Edit Note"),
@@ -89,7 +86,17 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                             ),
                           );
                 },
-                child: const Text("Save"),
+                child: BlocBuilder<NoteBloc, NoteState>(
+                  builder: (context, state) {
+                    if (state is LoadingState) {
+                      return Lottie.asset(
+                        "assets/butttonloading.json",
+                        width: 40,
+                      );
+                    }
+                    return const Text("Save");
+                  },
+                ),
               ),
               const SizedBox(
                 width: 10,
@@ -127,7 +134,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
             ),
           ),
         );
-      }
-    });
+      },
+    );
   }
 }

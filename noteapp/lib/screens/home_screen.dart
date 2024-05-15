@@ -53,13 +53,10 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: BlocConsumer<NoteBloc, NoteState>(
-        listener: (context, state) {},
+      body: BlocBuilder<NoteBloc, NoteState>(
         builder: (context, state) {
           if (state is LoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return Center(child: Lottie.asset("assets/loading.json"));
           }
           if (state is ScuccessState) {
             return state.notes.isEmpty

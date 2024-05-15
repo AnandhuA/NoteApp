@@ -9,7 +9,6 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(ThemeInitial(themeData: lightMode)) {
     on<ThemeChangeEvent>((event, emit) {
 
-   
         if ((state as ThemeInitial).themeData == darkMode) {
           emit(ThemeInitial(themeData: lightMode));
         
