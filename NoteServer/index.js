@@ -6,7 +6,7 @@ mongoose.connect(uri, (err) => {
     if (!err) {
         console.log('Database Connected');
     } else {
-        console.log('Database Connection error!');
+        console.log('Database Connection failed!');
     }
 })
 
