@@ -15,3 +15,7 @@ List<Color> colors = [
   Colors.amber.shade100,
   Colors.lime.shade100,
 ];
+
+final ThemeData darkMode = ThemeData.dark();
+
+final ThemeData lightMode = ThemeData.light();
