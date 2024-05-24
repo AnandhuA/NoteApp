@@ -1,9 +1,19 @@
 const express = require('express');
 const cors = require('cors'); 
 const app = express();
+const mongoose = require('mongoose');
+const uri = 'mongodb+srv://abhirajtr:abhirajtr@cluster0.wagtvjr.mongodb.net/NoteApp?retryWrites=true&w=majority&appName=Cluster0'
+mongoose.connect(uri, (err) => {
+    if (!err) {
+        console.log('Database Connected');
+    } else {
+        console.log('Database Connection failed');
+    }
+})
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 app.use(cors())
 
