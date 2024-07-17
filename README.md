@@ -53,8 +53,8 @@ This Flutter-based note-taking app is powered by a Node.js backend. It allows us
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/music-app.git
-   cd music-app
+   git clone https://github.com/AnandhuA/NoteApp.git
+   cd NoteApp
 
 2. Install dependencies:
    ```bash
