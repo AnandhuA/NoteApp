@@ -42,3 +42,23 @@ This Flutter-based note-taking app is powered by a Node.js backend. It allows us
     <img src="https://github.com/AnandhuA/NoteApp/assets/72302650/fbc493bb-b774-44d6-bfd5-f1a612037331" alt="Screenshot" width="300" style="margin-right: 10px;"/>
     <img src="https://github.com/AnandhuA/NoteApp/assets/72302650/253ac606-c97b-4149-92a8-de4a4814771c" alt="Screenshot" width="300" style="margin-right: 10px;"/>
 </p>
+
+
+### Requirements
+
+- Flutter SDK
+- Dart
+
+### Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/music-app.git
+   cd music-app
+
+2. Install dependencies:
+   ```bash
+   flutter pub get
+3. Run the app:
+   ```bash
+   flutter run
